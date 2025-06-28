@@ -1,0 +1,26 @@
+{
+  "name": "find_my_pg",
+  "version": "1.0.0",
+  "description": "this is an app which help users to find best pg at best prices",
+  "main": "Server.js",
+  "scripts": {
+    "dev": "nodemon Server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deepak-coder798/FindMyPG.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Deepak-coder798/FindMyPG/issues"
+  },
+  "homepage": "https://github.com/Deepak-coder798/FindMyPG#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.1",
+    "nodemon": "^3.1.10"
+  }
+}
