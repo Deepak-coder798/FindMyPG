@@ -11,10 +11,26 @@ const pgSchema = new mongoose.Schema({
   facilities: {
     food: Boolean,
     ac: Boolean,
-    wifi:Boolean,
-    geyser:Boolean,
+    wifi: Boolean,
+    geyser: Boolean,
   },
-  images: [String]
+  images: [String],
+
+  // 🌍 GeoJSON for location
+  locationCoords: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number], // [longitude, latitude]
+      required: true
+    }
+  }
 });
+
+// 👇 Add 2dsphere index for geo queries
+pgSchema.index({ locationCoords: '2dsphere' });
 
 module.exports = mongoose.model('PG', pgSchema);
