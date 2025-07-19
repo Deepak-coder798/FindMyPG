@@ -1,7 +1,6 @@
-// utils/sendEmail.js
 const nodemailer = require('nodemailer');
 
-exports.sendOTP = async (toEmail, otp) => {
+exports.sendEmailOTP = async (toEmail, otp) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
