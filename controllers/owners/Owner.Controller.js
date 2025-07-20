@@ -1,4 +1,5 @@
 const PG = require('../../models/owners/PG.Model');
+const Staff = require('../../models/owners/Staff.Model')
 
 exports.addPG = async (req, res) => {
   try {
@@ -114,3 +115,36 @@ exports.getPGsNearby = async (req, res) => {
 
   res.json(pgs);
 };
+
+exports.addStaff = async (req, res) => {
+  try {
+    const { name, phone, email, role, pgId,pgOwnerId } = req.body;
+
+    const newStaff = new Staff({
+      name,
+      phone,
+      email,
+      role,
+      pgId, 
+      pgOwnerId,
+    });
+
+    const saved = await newStaff.save();
+    res.status(201).json(saved);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to add staff', details: err.message });
+  }
+}
+
+exports.getStaffByOwnerId = async (req, res) => {
+  try {
+    const staff = await Staff.find({ pgOwnerId: req.params.ownerId });
+    if(staff?.length>0)
+    res.status(200).json({ staff });
+    else{
+      res.status(404).json({message:"No Staff Member Found!"});
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching staff", error: err });
+  }
+}
